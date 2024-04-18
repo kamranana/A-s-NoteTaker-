@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note Taker</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  background-color: #00bcd4;
+  color: white;
+  padding: 10px;
+}
+
+.note-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.note-list li {
+  background: #eee;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-left: 3px solid red;
+}
+
+.note-editor {
+  display: flex;
+  flex-direction: column;
+}
+
+#note-title, #note-text {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 300px;
+}
+
+#save-note {
+  padding: 10px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">:
+    <h1>Note Taker</h1>
+  </div>
+  <div class="note-list">
+    <ul id="notes">
+      <!-- JavaScript will dynamically add notes here -->
+    </ul>
+  </div>
+  <div class="note-editor">
+    <input type="text" id="note-title" placeholder="Note Title">
+    <textarea id="note-text" placeholder="Note Text"></textarea>
+    <button id="save-note">Save Note</button>
+  </div>
+</div>
+<script>
+document.getElementById('save-note').addEventListener('click', () => {
+  const title = document.getElementById('note-title').value;
+  const text = document.getElementById('note-text').value;
+
+  if (title && text) {
+    const noteList = document.getElementById('notes');
+    const li = document.createElement('li');
+    li.textContent = title; // In a real app, you'd want to sanitize this input
+    noteList.appendChild(li);
+
+    // Clear the input fields
+    document.getElementById('note-title').value = '';
+    document.getElementById('note-text').value = '';
+  } else {
+    alert('Please add a title and a note');
+  }
+});
+</script>
+</body>
+</html>
